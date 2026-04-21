@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JunkShooting Portfolio</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700;900&display=swap');
+  :root {
+    --bg:#0d0f14; --panel:#14181f; --border:#2a3040;
+    --accent:#c8a84b; --accent2:#4bc8a8; --accent3:#c84b6a;
+    --text:#d4cfc7; --muted:#7a7a8a; --code-bg:#0a0c10;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-serif;font-size:13px;line-height:1.7;}
+  .slides{width:100%;}
+  .slide{width:960px;min-height:540px;margin:0 auto 48px;background:var(--panel);border:1px solid var(--border);position:relative;overflow:hidden;}
+  .slide-header{display:flex;align-items:flex-start;justify-content:space-between;padding:18px 28px 12px;border-bottom:1px solid var(--border);}
+  .title-block .title{font-size:22px;font-weight:900;color:#fff;letter-spacing:-.5px;text-decoration:underline;text-underline-offset:3px;}
+  .title-block .subtitle{font-size:11px;color:var(--muted);margin-top:3px;}
+  .meta{text-align:right;font-size:11px;color:var(--muted);line-height:1.8;}
+  .meta-icons{display:flex;gap:6px;justify-content:flex-end;margin-bottom:4px;}
+  .lang-badge{display:inline-block;width:22px;height:22px;border-radius:4px;font-size:9px;line-height:22px;text-align:center;font-weight:700;color:#fff;}
+  .lang-cpp{background:#004482;} .lang-py{background:#3776AB;} .lang-vs{background:#5C2D91;}
+  .section-label{display:inline-block;background:var(--accent);color:#0d0f14;font-weight:700;font-size:13px;padding:5px 18px;margin:18px 28px;}
+  .content{padding:0 28px 28px;}
+  .decision-title{font-size:12.5px;font-weight:700;color:#fff;margin-bottom:10px;padding-left:10px;border-left:3px solid var(--accent);}
+  .card{background:#1a1f2a;border:1px solid var(--border);padding:14px 16px;}
+  .card-title{font-size:12px;font-weight:700;color:#fff;margin-bottom:6px;}
+  .card-body{font-size:11.5px;color:var(--text);line-height:1.75;}
+  .divider{height:1px;background:var(--border);margin:14px 0;}
+  .fn{color:#d2a8ff;font-family:'Share Tech Mono',monospace;font-size:11px;}
+  .kw{color:#4bc8a8;font-weight:700;}
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  pre{background:var(--code-bg);border:1px solid #1e2535;padding:14px 16px;font-family:'Share Tech Mono',monospace;font-size:11px;line-height:1.7;overflow-x:auto;white-space:pre;color:#c9d1d9;}
+  .c-kw{color:#ff7b72;} .c-fn{color:#d2a8ff;} .c-str{color:#a5d6ff;} .c-cmt{color:#8b949e;font-style:italic;} .c-num{color:#79c0ff;} .c-hl{background:#2a3040;display:block;}
+  .script-label{font-size:11px;font-weight:700;color:var(--accent);font-family:'Share Tech Mono',monospace;margin-bottom:6px;display:flex;align-items:center;gap:8px;}
+  .script-label::after{content:'';flex:1;height:1px;background:var(--border);}
+  .script-comment{font-size:11px;color:var(--muted);margin-bottom:6px;padding-left:4px;border-left:2px solid var(--accent);}
+  .script-section{margin-bottom:20px;}
+  .page-num{position:absolute;bottom:10px;right:18px;font-size:10px;color:var(--muted);font-family:'Share Tech Mono',monospace;}
+</style>
+</head>
+<body>
+<div class="slides">
+
+<!-- ===== PAGE 1: 概要 ===== -->
+<div class="slide">
+  <div class="slide-header">
+    <div class="title-block">
+      <div class="title">JunkShooting</div>
+      <div class="subtitle">音声認識を用いた拡張型 2Dシューティング</div>
+    </div>
+    <div class="meta">
+      <div class="meta-icons">
+        <span class="lang-badge lang-cpp">C++</span>
+        <span class="lang-badge lang-py">Py</span>
+        <span class="lang-badge lang-vs">VS</span>
+      </div>
+      制作期間：約1ヶ月（90時間）<br>
+      制作時期：2025/07〜2025/08<br>
+      個人制作
+    </div>
+  </div>
+
+  <div class="section-label">概要</div>
+
+  <div class="content">
+    <div class="grid-2" style="margin-bottom:14px;">
+      <div class="card">
+        <div class="card-title">どんな作品</div>
+        <div class="card-body">
+          「作る・選ぶ・遊ぶ」を融合した 60FPS 横スクロールシューティング。
+          プレイヤーはゲーム開始前にお絵描きツールで自機を描き、
+          スキルツリーで能力を開放してからステージに挑む。
+          戦闘中はキーボードで8方向移動しつつ、<strong style="color:#4bc8a8;">音声認識で「拡散」「追尾」「ブラックホール」と叫ぶ</strong>ことで
+          弾の挙動がリアルタイムに切り替わる。
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">なぜ作った？</div>
+        <div class="card-body">
+          高校時代に文字認識を用いた学習アプリを制作した経験から、
+          認識技術を次はゲーム体験そのものに組み込みたいと考えた。
+          キーボードだけの操作では得られない
+          「声が世界を変える」という拡張的な操作感を狙い、
+          シューティングというジャンルとの親和性を検証するため 1ヶ月集中制作で完成を目指した。
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">技術スタック</div>
+      <div class="card-body" style="font-family:'Share Tech Mono',monospace;font-size:11px;line-height:2;">
+        C++17 &nbsp;|&nbsp; DX Library &nbsp;|&nbsp; Win32 API（CreateProcessW / std::thread） &nbsp;|&nbsp;
+        stb_image_write（PNG 出力）&nbsp;|&nbsp; Python 3 &nbsp;|&nbsp; SpeechRecognition &nbsp;|&nbsp; PyAudio &nbsp;|&nbsp; Google Speech API &nbsp;|&nbsp; CSV（スキル／ポイント保存）
+      </div>
+    </div>
+  </div>
+  <div class="page-num">1 / 4</div>
+</div>
+
+<!-- ===== PAGE 2: 技術選択の経緯① ===== -->
+<div class="slide" style="min-height:620px;">
+  <div class="slide-header">
+    <div class="title-block">
+      <div class="title">JunkShooting</div>
+      <div class="subtitle">音声認識を用いた拡張型 2Dシューティング</div>
+    </div>
+    <div class="meta">
+      <div class="meta-icons">
+        <span class="lang-badge lang-cpp">C++</span>
+        <span class="lang-badge lang-py">Py</span>
+        <span class="lang-badge lang-vs">VS</span>
+      </div>
+      制作期間：約1ヶ月（90時間）<br>
+      制作時期：2025/07〜2025/08<br>
+      個人制作
+    </div>
+  </div>
+
+  <div class="section-label">技術選択の経緯</div>
+
+  <div class="content">
+    <div class="decision-title" style="margin-bottom:12px;">① なぜ音声認識を取り入れたのか</div>
+
+    <div style="display:grid;grid-template-columns:1fr 1px 1fr;gap:0 14px;align-items:start;">
+
+      <!-- 左：動機の変遷フロー -->
+      <div>
+        <div style="font-size:10px;color:var(--muted);margin-bottom:6px;letter-spacing:.5px;">発想の変遷</div>
+        <svg width="100%" viewBox="0 0 400 360" style="display:block;">
+          <defs>
+            <marker id="a1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+          </defs>
+
+          <rect x="0" y="0" width="380" height="52" rx="6" fill="#1e1a2a" stroke="#3a3060" stroke-width="0.5"/>
+          <text x="12" y="18" font-family="'Noto Sans JP',sans-serif" font-size="10" fill="#c8a84b">動機</text>
+          <text x="12" y="34" font-family="'Noto Sans JP',sans-serif" font-size="11" fill="#e0dbd5">高校時代に文字認識の学習アプリを制作</text>
+          <text x="12" y="49" font-family="'Noto Sans JP',sans-serif" font-size="10" fill="#9a8aaa">認識技術の面白さを、次はゲーム体験に組み込みたい</text>
+
+          <line x1="190" y1="52" x2="190" y2="76" stroke="#5a5a6a" stroke-width="1" marker-end="url(#a1)"/>
+          <rect x="30" y="58" width="320" height="14" rx="3" fill="#1a1e2a"/>
+          <text x="190" y="69" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-size="9" fill="#6ab0e0">キーボード操作だけでは単調　─　もっと直感的な拡張がほしい</text>
+
+          <rect x="0" y="78" width="380" height="44" rx="6" fill="#2a1a1a" stroke="#5a3030" stroke-width="0.5"/>
+          <text x="12" y="96" font-family="'Noto Sans JP',sans-serif" font-size="10" fill="#c84b6a">問題：入力デバイスが追加要件になると敷居が上がる</text>
+          <text x="12" y="112" font-family="'Noto Sans JP',sans-serif" font-size="10" fill="#8a6a6a">ジョイスティック等を必須にすると配布が難しい</text>
+
+          <line x1="190" y1="122" x2="190" y2="146" stroke="#5a5a6a" stroke-width="1" marker-end="url(#a1)"/>
+
+          <rect x="0" y="148" width="380" height="60" rx="6" fill="#141e28" stroke="#2a3a50" stroke-width="0.5"/>
+          <text x="12" y="166" font-family="'Noto Sans JP',sans-serif" font-size="10" fill="#6ab0e0">仮説</text>
+          <text x="12" y="183" font-family="'Noto Sans JP',sans-serif" font-size="10" fill="#b0c8e0">マイクはほぼ全てのPCに付いている</text>
+          <text x="12" y="198" font-family="'Noto Sans JP',sans-serif" font-size="10" fill="#b0c8e0">→ 音声認識なら追加機材ゼロで「体で遊ぶ」拡張が可能</text>
+
+          <line x1="190" y1="208" x2="190" y2="232" stroke="#4bc8a8" stroke-width="1" marker-end="url(#a1)"/>
+
+          <rect x="0" y="234" width="380" height="60" rx="6" fill="#132218" stroke="#2a7050" stroke-width="1"/>
+          <text x="12" y="252" font-family="'Noto Sans JP',sans-serif" font-size="10" fill="#4bc8a8">採用</text>
+          <text x="12" y="269" font-family="'Noto Sans JP',sans-serif" font-size="11" fill="#e0dbd5">叫ぶことで弾の種類を切り替える操作を導入</text>
+          <text x="12" y="285" font-family="'Noto Sans JP',sans-serif" font-size="10" fill="#6aaa8a">「連射」「拡散」「追尾」「ブラックホール」── 声が戦術になる</text>
+
+          <rect x="0" y="308" width="380" height="44" rx="6" fill="#1a1e10" stroke="#4a4a20" stroke-width="0.5"/>
+          <text x="12" y="326" font-family="'Noto Sans JP',sans-serif" font-size="9.5" fill="#c8a84b">さらに「自機を描く → スキルを選ぶ → 声で戦う」と段階を作り、</text>
+          <text x="12" y="343" font-family="'Noto Sans JP',sans-serif" font-size="9.5" fill="#c8a84b">『作る・選ぶ・遊ぶ』の3フェーズを 1 タイトルに同居させる方針に発展</text>
+        </svg>
+      </div>
+
+      <div style="background:var(--border);width:1px;align-self:stretch;"></div>
+
+      <div>
+        <div style="font-size:10px;color:var(--muted);margin-bottom:6px;letter-spacing:.5px;">ゲーム全体の構造（3フェーズ）</div>
+        <svg width="100%" viewBox="0 0 400 360" style="display:block;">
+          <defs>
+            <marker id="a2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+          </defs>
+
+          <rect x="0" y="0" width="380" height="72" rx="6" fill="#1a1e2a" stroke="#2a3a50" stroke-width="0.5"/>
+          <text x="12" y="18" font-family="'Share Tech Mono',monospace" font-size="10" fill="#c8a84b">PHASE 1  ─  作る</text>
+          <text x="12" y="36" font-family="'Noto Sans JP',sans-serif" font-size="10" fill="#e0dbd5">お絵描きツールで自機を描く（sceneGraphic）</text>
+          <text x="12" y="52" font-family="'Share Tech Mono',monospace" font-size="9" fill="#8aa0c0">4形状ペン / HSV スライダ / 塗りつぶし(BFS) / 80x64 PNG 保存</text>
+          <text x="12" y="67" font-family="'Share Tech Mono',monospace" font-size="9" fill="#8aa0c0">stbi_write_png("PL.png") → 次のシーンで自機テクスチャとして使用</text>
+
+          <line x1="190" y1="72" x2="190" y2="96" stroke="#4bc8a8" stroke-width="1" marker-end="url(#a2)"/>
+
+          <rect x="0" y="98" width="380" height="72" rx="6" fill="#141e28" stroke="#2a5038" stroke-width="0.5"/>
+          <text x="12" y="116" font-family="'Share Tech Mono',monospace" font-size="10" fill="#c8a84b">PHASE 2  ─  選ぶ</text>
+          <text x="12" y="134" font-family="'Noto Sans JP',sans-serif" font-size="10" fill="#e0dbd5">スキルツリーで能力を開放（sceneSkillTree）</text>
+          <text x="12" y="150" font-family="'Share Tech Mono',monospace" font-size="9" fill="#8aa0c0">skilltree.csv / skills.csv / points.csv で状態を永続化</text>
+          <text x="12" y="165" font-family="'Share Tech Mono',monospace" font-size="9" fill="#8aa0c0">通常ポイント / 特殊ポイントの2軸 ＋ 排他ノード（4モード択一）</text>
+
+          <line x1="190" y1="170" x2="190" y2="194" stroke="#4bc8a8" stroke-width="1" marker-end="url(#a2)"/>
+
+          <rect x="0" y="196" width="380" height="88" rx="6" fill="#132218" stroke="#2a7050" stroke-width="1"/>
+          <text x="12" y="214" font-family="'Share Tech Mono',monospace" font-size="10" fill="#c8a84b">PHASE 3  ─  遊ぶ</text>
+          <text x="12" y="232" font-family="'Noto Sans JP',sans-serif" font-size="10" fill="#e0dbd5">60FPS 横スクロールシューティング（scenePlay）</text>
+          <text x="12" y="248" font-family="'Share Tech Mono',monospace" font-size="9" fill="#4bc8a8">8方向移動 ＋ 通常弾 ＋ 音声認識で弾モード切替</text>
+          <text x="12" y="263" font-family="'Share Tech Mono',monospace" font-size="9" fill="#6aaa8a">SpeechRecognize() ← 別スレッドで Python 実行 → voice_output.txt</text>
+          <text x="12" y="278" font-family="'Share Tech Mono',monospace" font-size="9" fill="#6aaa8a">normalizeModeName() で誤認識を吸収 → 4 モードへ分岐</text>
+
+          <rect x="0" y="302" width="380" height="52" rx="6" fill="#1a1e10" stroke="#4a4020" stroke-width="0.5"/>
+          <text x="12" y="320" font-family="'Noto Sans JP',sans-serif" font-size="9.5" fill="#c8a84b">3フェーズすべてをひとつの .exe に束ね、</text>
+          <text x="12" y="335" font-family="'Noto Sans JP',sans-serif" font-size="9.5" fill="#c8a84b">シーン遷移（sceneTitle / sceneSelect / sceneOver / sceneClear）で</text>
+          <text x="12" y="350" font-family="'Noto Sans JP',sans-serif" font-size="9.5" fill="#c8a84b">ひとつの体験として繋ぐ</text>
+        </svg>
+      </div>
+
+    </div>
+  </div>
+  <div class="page-num">2 / 4</div>
+</div>
+
+<!-- ===== PAGE 3: 技術選択の経緯② ===== -->
+<div class="slide" style="min-height:620px;">
+  <div class="slide-header">
+    <div class="title-block">
+      <div class="title">JunkShooting</div>
+      <div class="subtitle">音声認識を用いた拡張型 2Dシューティング</div>
+    </div>
+    <div class="meta">
+      <div class="meta-icons">
+        <span class="lang-badge lang-cpp">C++</span>
+        <span class="lang-badge lang-py">Py</span>
+        <span class="lang-badge lang-vs">VS</span>
+      </div>
+      制作期間：約1ヶ月（90時間）<br>
+      制作時期：2025/07〜2025/08<br>
+      個人制作
+    </div>
+  </div>
+
+  <div class="section-label">技術選択の経緯</div>
+
+  <div class="content">
+    <div style="display:grid;grid-template-columns:1fr 1px 1fr;gap:0 14px;align-items:start;">
+
+      <div>
+        <div class="decision-title" style="margin-bottom:10px;">② Python × C++ ── なぜ異言語連携を選んだか</div>
+        <svg width="100%" viewBox="0 0 400 340" style="display:block;">
+          <defs>
+            <marker id="a3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+          </defs>
+
+          <rect x="0" y="0" width="380" height="58" rx="6" fill="#2a1e1e" stroke="#5a3030" stroke-width="0.5"/>
+          <text x="12" y="18" font-family="'Noto Sans JP',sans-serif" font-size="10" fill="#c84b6a">問題：C++ 単体だと音声認識の実装負荷が大きい</text>
+          <text x="12" y="34" font-family="'Noto Sans JP',sans-serif" font-size="10" fill="#8a6a6a">・Windows SAPI は日本語精度が低く、専用辞書整備も必要</text>
+          <text x="12" y="49" font-family="'Noto Sans JP',sans-serif" font-size="10" fill="#8a6a6a">・1ヶ月の制作期間で認識エンジンを組むのは現実的でない</text>
+
+          <line x1="190" y1="58" x2="190" y2="80" stroke="#5a5a6a" stroke-width="1" marker-end="url(#a3)"/>
+
+          <rect x="0" y="82" width="175" height="76" rx="6" fill="#1a2e1a" stroke="#3a6030" stroke-width="0.5"/>
+          <text x="88" y="100" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-size="10" fill="#a0c060">Python（認識）</text>
+          <text x="88" y="116" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="9" fill="#8aa070">SpeechRecognition ＋</text>
+          <text x="88" y="130" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="9" fill="#8aa070">Google Speech API</text>
+          <text x="88" y="146" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-size="9" fill="#a0c060">日本語精度が高い</text>
+
+          <rect x="185" y="82" width="175" height="76" rx="6" fill="#1a1e2e" stroke="#3a4060" stroke-width="0.5"/>
+          <text x="272" y="100" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-size="10" fill="#6ab0e0">C++（ゲーム本体）</text>
+          <text x="272" y="116" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="9" fill="#8090b0">DX Library で 60FPS 描画</text>
+          <text x="272" y="130" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="9" fill="#8090b0">キー入力／衝突／エフェクト</text>
+          <text x="272" y="146" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-size="9" fill="#6ab0e0">リアルタイム性が必須</text>
+
+          <line x1="88" y1="158" x2="180" y2="180" stroke="#c84b6a" stroke-width="1"/>
+          <line x1="272" y1="158" x2="200" y2="180" stroke="#c84b6a" stroke-width="1"/>
+
+          <rect x="30" y="182" width="320" height="44" rx="6" fill="#2a1a1a" stroke="#5a3030" stroke-width="0.5"/>
+          <text x="190" y="200" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-size="10" fill="#c84b6a">ただし：Python は認識に 1〜3 秒かかり、60FPS と同期しない</text>
+          <text x="190" y="216" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-size="9" fill="#8a6a6a">メインループで直接呼ぶとゲームがフリーズする</text>
+
+          <line x1="190" y1="226" x2="190" y2="248" stroke="#4bc8a8" stroke-width="1" marker-end="url(#a3)"/>
+
+          <rect x="0" y="250" width="380" height="82" rx="6" fill="#132218" stroke="#2a7050" stroke-width="1"/>
+          <text x="12" y="268" font-family="'Noto Sans JP',sans-serif" font-size="10" fill="#4bc8a8">解：別プロセス化 ＋ ファイルブリッジで非同期に繋ぐ</text>
+          <text x="12" y="286" font-family="'Share Tech Mono',monospace" font-size="9" fill="#6aaa8a">CreateProcessW("Pvoice.exe") → std::thread で WaitForSingleObject</text>
+          <text x="12" y="301" font-family="'Share Tech Mono',monospace" font-size="9" fill="#6aaa8a">Python 側：voice_output.txt に結果を書き出し</text>
+          <text x="12" y="316" font-family="'Share Tech Mono',monospace" font-size="9" fill="#6aaa8a">C++ 側：std::mutex で結果を保護、isRunning フラグで UI を制御</text>
+          <text x="12" y="330" font-family="'Noto Sans JP',sans-serif" font-size="9" fill="#4bc8a8">ゲーム本体は 60FPS を維持、認識完了時だけモード切替が発火</text>
+        </svg>
+      </div>
+
+      <div style="background:var(--border);width:1px;align-self:stretch;"></div>
+
+      <div>
+        <div class="decision-title" style="margin-bottom:10px;">③ スキルツリー ── なぜ CSV 駆動にしたか</div>
+        <svg width="100%" viewBox="0 0 400 340" style="display:block;">
+          <defs>
+            <marker id="a4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+          </defs>
+
+          <rect x="0" y="0" width="175" height="72" rx="6" fill="#2a1a1a" stroke="#5a3030" stroke-width="0.5"/>
+          <text x="88" y="18" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-size="10" fill="#c84b6a">ハードコード案</text>
+          <text x="88" y="34" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="9" fill="#8a6a6a">スキル追加 ＝ 再ビルド</text>
+          <text x="88" y="48" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="9" fill="#8a6a6a">進捗保存も手書きコード</text>
+          <text x="88" y="63" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-size="9" fill="#c84b6a">✕ 調整コスト大</text>
+
+          <rect x="185" y="0" width="175" height="72" rx="6" fill="#132218" stroke="#2a5038" stroke-width="1"/>
+          <text x="272" y="18" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-size="10" fill="#4bc8a8">CSV 駆動</text>
+          <text x="272" y="34" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="9" fill="#6aaa8a">skills.csv / skilltree.csv</text>
+          <text x="272" y="48" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="9" fill="#6aaa8a">points.csv に保存</text>
+          <text x="272" y="63" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-size="9" fill="#4bc8a8">✓ 外部で編集・テスト可</text>
+
+          <line x1="272" y1="72" x2="272" y2="94" stroke="#4bc8a8" stroke-width="1" marker-end="url(#a4)"/>
+
+          <rect x="0" y="96" width="380" height="118" rx="6" fill="#1a1f2a" stroke="#2a3040" stroke-width="0.5"/>
+          <text x="190" y="114" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-size="10" fill="#d0d0e0">3ファイル構成</text>
+
+          <text x="14" y="134" font-family="'Share Tech Mono',monospace" font-size="10" fill="#c8a84b">skills.csv</text>
+          <text x="130" y="134" font-family="'Share Tech Mono',monospace" font-size="9" fill="#b0b0c0">技名 ＋ 4モードの対応表（起動時リロード）</text>
+
+          <text x="14" y="154" font-family="'Share Tech Mono',monospace" font-size="10" fill="#c8a84b">skilltree.csv</text>
+          <text x="130" y="154" font-family="'Share Tech Mono',monospace" font-size="9" fill="#b0b0c0">名前／説明／コスト／解放状況／親（ノード構造）</text>
+
+          <text x="14" y="174" font-family="'Share Tech Mono',monospace" font-size="10" fill="#c8a84b">points.csv</text>
+          <text x="130" y="174" font-family="'Share Tech Mono',monospace" font-size="9" fill="#b0b0c0">通常 / 特殊 の2種ポイント残高</text>
+
+          <text x="14" y="194" font-family="'Noto Sans JP',sans-serif" font-size="9" fill="#8a8aaa">起動時に LoadSkillTreeStatus / LoadPointsFromCSV、</text>
+          <text x="14" y="208" font-family="'Noto Sans JP',sans-serif" font-size="9" fill="#8a8aaa">解放・消費のたびに即保存 → クラッシュしても進捗維持</text>
+
+          <line x1="190" y1="214" x2="190" y2="238" stroke="#5a5a6a" stroke-width="1" marker-end="url(#a4)"/>
+
+          <rect x="0" y="240" width="380" height="54" rx="6" fill="#141e28" stroke="#2a3a50" stroke-width="0.5"/>
+          <text x="12" y="258" font-family="'Noto Sans JP',sans-serif" font-size="10" fill="#6ab0e0">拡張性</text>
+          <text x="12" y="274" font-family="'Noto Sans JP',sans-serif" font-size="10" fill="#b0c0d0">新スキルの追加／バランス調整が CSV 編集だけで完結</text>
+          <text x="12" y="288" font-family="'Noto Sans JP',sans-serif" font-size="9" fill="#5a8aaa">「同時取得できないノード」の排他関係もデータ側に寄せやすい</text>
+
+          <rect x="0" y="302" width="380" height="36" rx="6" fill="#1a1e10" stroke="#4a4020" stroke-width="0.5"/>
+          <text x="12" y="320" font-family="'Noto Sans JP',sans-serif" font-size="9.5" fill="#c8a84b">この設計がそのまま piece×peace → BrainTQ のシナリオ管理へ転用された</text>
+          <text x="12" y="332" font-family="'Noto Sans JP',sans-serif" font-size="9" fill="#a68830">（CSVでフラグ／分岐を管理するパターンの原型）</text>
+        </svg>
+      </div>
+
+    </div>
+  </div>
+  <div class="page-num">3 / 4</div>
+</div>
+
+<!-- ===== PAGE 4: Script ===== -->
+<div class="slide" style="min-height:780px;">
+  <div class="slide-header">
+    <div class="title-block">
+      <div class="title">JunkShooting</div>
+      <div class="subtitle">音声認識を用いた拡張型 2Dシューティング</div>
+    </div>
+    <div class="meta">
+      <div class="meta-icons">
+        <span class="lang-badge lang-cpp">C++</span>
+        <span class="lang-badge lang-py">Py</span>
+        <span class="lang-badge lang-vs">VS</span>
+      </div>
+      制作期間：約1ヶ月（90時間）<br>
+      制作時期：2025/07〜2025/08<br>
+      個人制作
+    </div>
+  </div>
+
+  <div class="section-label">Script</div>
+
+  <div class="content">
+
+    <div class="script-section">
+      <div class="script-label">① Python 側：音声認識ワンショット  ─  Pvoice.py</div>
+      <div class="script-comment">
+        PyInstaller で Pvoice.exe にビルドして C++ 側から起動する。
+        phrase_time_limit=6 で最長 6 秒まで待ち、結果を voice_output.txt に書き出すだけの単純責務にすることで、
+        C++ 側の読み取りロジックを極力シンプルに保った。
+      </div>
+<pre><span class="c-kw">import</span> speech_recognition <span class="c-kw">as</span> sr
+<span class="c-kw">import</span> sys
+
+<span class="c-kw">def</span> <span class="c-fn">recognize_once</span>():
+    listener = sr.<span class="c-fn">Recognizer</span>()
+    <span class="c-kw">try</span>:
+        <span class="c-kw">with</span> sr.<span class="c-fn">Microphone</span>() <span class="c-kw">as</span> source:
+            <span class="c-fn">print</span>(<span class="c-str">"Listening..."</span>)
+<span class="c-hl">            voice = listener.<span class="c-fn">listen</span>(source, phrase_time_limit=<span class="c-num">6</span>)  <span class="c-cmt"># 最長6秒まで受付</span></span>
+<span class="c-hl">            voice_text = listener.<span class="c-fn">recognize_google</span>(voice, language=<span class="c-str">"ja-JP"</span>)</span>
+            <span class="c-fn">print</span>(voice_text)
+            <span class="c-kw">with</span> <span class="c-fn">open</span>(<span class="c-str">"voice_output.txt"</span>, <span class="c-str">"w"</span>) <span class="c-kw">as</span> file:
+                file.<span class="c-fn">write</span>(voice_text)   <span class="c-cmt"># C++ 側はこのファイルを読むだけ</span>
+    <span class="c-kw">except</span> sr.UnknownValueError:
+        <span class="c-fn">print</span>(<span class="c-str">"すみません、音声を理解できませんでした"</span>)
+    <span class="c-kw">except</span> sr.RequestError:
+        <span class="c-fn">print</span>(<span class="c-str">"音声認識サービスにリクエストを送信できませんでした"</span>)
+
+<span class="c-kw">if</span> __name__ == <span class="c-str">"__main__"</span>:
+    <span class="c-fn">recognize_once</span>()</pre>
+    </div>
+
+    <div class="script-section">
+      <div class="script-label">② C++ 側：Python 非同期呼び出し  ─  shootingGame.cpp / runPythonScriptAsync()</div>
+      <div class="script-comment">
+        Qキー押下をトリガに Pvoice.exe を別プロセス起動。
+        std::thread で WaitForSingleObject を待たせることでメインループの 60FPS を一切止めない。
+        認識結果は std::mutex で保護した recognitionResult に書き戻す。
+      </div>
+<pre><span class="c-kw">void</span> <span class="c-fn">runPythonScriptAsync</span>(<span class="c-kw">void</span>)
+{
+    isRunning = <span class="c-kw">true</span>;  <span class="c-cmt">// 実行中フラグ</span>
+<span class="c-hl">    std::thread([]</span>
+<span class="c-hl">    {</span>
+        STARTUPINFOW si; PROCESS_INFORMATION pi;
+        ZeroMemory(&amp;si, <span class="c-kw">sizeof</span>(si));
+        si.cb = <span class="c-kw">sizeof</span>(si);
+        si.dwFlags = STARTF_USESHOWWINDOW;
+        si.wShowWindow = SW_HIDE;   <span class="c-cmt">// コマンドプロンプトを非表示</span>
+
+        std::wstring command = L<span class="c-str">"Pvoice.exe"</span>;
+<span class="c-hl">        <span class="c-kw">if</span> (<span class="c-fn">CreateProcessW</span>(NULL, &amp;command[<span class="c-num">0</span>], NULL, NULL, FALSE, <span class="c-num">0</span>, NULL, NULL, &amp;si, &amp;pi))</span>
+        {
+            <span class="c-fn">WaitForSingleObject</span>(pi.hProcess, INFINITE);  <span class="c-cmt">// 別スレッドなので安全</span>
+            <span class="c-fn">CloseHandle</span>(pi.hProcess);
+            <span class="c-fn">CloseHandle</span>(pi.hThread);
+        }
+        <span class="c-cmt">// 認識結果をファイル経由で受け取る</span>
+        std::ifstream file(<span class="c-str">"voice_output.txt"</span>);
+        std::string result;
+        <span class="c-kw">if</span> (file.<span class="c-fn">is_open</span>()) { std::<span class="c-fn">getline</span>(file, result); file.<span class="c-fn">close</span>(); }
+        <span class="c-kw">else</span>                   { result = <span class="c-str">"エラー: 結果ファイルが見つかりません"</span>; }
+<span class="c-hl">        {</span>
+<span class="c-hl">            std::lock_guard&lt;std::mutex&gt; lock(resultMutex);  <span class="c-cmt">// スレッド間共有を保護</span></span>
+<span class="c-hl">            recognitionResult = result;</span>
+<span class="c-hl">        }</span>
+        isRunning = <span class="c-kw">false</span>;
+    }).<span class="c-fn">detach</span>();   <span class="c-cmt">// デタッチしてメインループへ即復帰</span>
+}</pre>
+    </div>
+
+    <div class="script-section">
+      <div class="script-label">③ 認識結果の正規化 ＋ モード切替  ─  normalizeModeName() / SpeechRecognize()</div>
+      <div class="script-comment">
+        Google Speech API は「連射→電車」のように同音異義で返すことがあるため、
+        表記ゆれを吸収する正規化関数を挟む。
+        正規化後の名前で ModeMap 配列を引き、弾・エフェクト・UI ラベルを一括で切り替える。
+      </div>
+<pre><span class="c-cmt">// 認識語やスキル名を正規化（誤認識の救済）</span>
+std::string <span class="c-fn">normalizeModeName</span>(<span class="c-kw">const</span> std::string&amp; word) {
+    std::string w = <span class="c-fn">trim</span>(word);
+<span class="c-hl">    <span class="c-kw">if</span> (w == <span class="c-str">"連射"</span> || w == <span class="c-str">"連写"</span> || w == <span class="c-str">"れんしゃ"</span> || w == <span class="c-str">"電車"</span>) <span class="c-kw">return</span> <span class="c-str">"連射"</span>;</span>
+<span class="c-hl">    <span class="c-kw">if</span> (w == <span class="c-str">"追尾"</span> || w == <span class="c-str">"ついび"</span>)                            <span class="c-kw">return</span> <span class="c-str">"追尾"</span>;</span>
+<span class="c-hl">    <span class="c-kw">if</span> (w == <span class="c-str">"拡散"</span> || w == <span class="c-str">"かくさん"</span>)                          <span class="c-kw">return</span> <span class="c-str">"拡散"</span>;</span>
+<span class="c-hl">    <span class="c-kw">if</span> (w == <span class="c-str">"ブラックホール"</span> || w == <span class="c-str">"ぶらっくほーる"</span>)      <span class="c-kw">return</span> <span class="c-str">"ブラックホール"</span>;</span>
+    <span class="c-kw">return</span> w;
+}
+
+<span class="c-cmt">// メインループから毎フレーム呼ばれる</span>
+<span class="c-kw">void</span> <span class="c-fn">SpeechRecognize</span>(<span class="c-kw">void</span>) {
+    <span class="c-kw">if</span> ((Key[KEY_INPUT_Q] == <span class="c-num">1</span> || Key[KEY_INPUT_P] == <span class="c-num">1</span>) &amp;&amp; !isRunning) {
+        isRunning = <span class="c-kw">true</span>;
+<span class="c-hl">        <span class="c-fn">runPythonScriptAsync</span>();    <span class="c-cmt">// 認識開始（非同期）</span></span>
+    }
+    <span class="c-kw">if</span> (!isRunning) {
+        std::string resultCopy;
+        { std::lock_guard&lt;std::mutex&gt; lock(resultMutex); resultCopy = recognitionResult; }
+        <span class="c-fn">drawTextC</span>(WIDTH/<span class="c-num">2</span>, <span class="c-num">60</span>, resultCopy.<span class="c-fn">c_str</span>(), <span class="c-num">0x00aaff</span>, <span class="c-num">32</span>);
+
+        <span class="c-kw">if</span> (!resultCopy.<span class="c-fn">empty</span>()) {
+            std::string recognized = <span class="c-fn">normalizeModeName</span>(resultCopy);
+<span class="c-hl">            <span class="c-kw">const</span> ModeMap modeMaps[] = {   <span class="c-cmt">// 名前 → モード・色・ラベルを一括対応</span></span>
+<span class="c-hl">                {<span class="c-str">"拡散"</span>,         EXPLOSION, EFF_MODE_EXPLOSION, <span class="c-num">500</span>,<span class="c-num">300</span>,<span class="c-num">30</span>,  <span class="c-str">"EXPLOSION"</span>},</span>
+<span class="c-hl">                {<span class="c-str">"ブラックホール"</span>, BLACKHALL, EFF_MODE_BLACKHALL, <span class="c-num">30</span>,<span class="c-num">500</span>,<span class="c-num">300</span>,  <span class="c-str">"BLACKHALL"</span>},</span>
+                ...
+            };
+        }
+    }
+}</pre>
+    </div>
+
+  </div>
+  <div class="page-num">4 / 4</div>
+</div>
+
+</div>
+</body>
+</html>
